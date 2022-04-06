@@ -70,6 +70,56 @@
 .info {
 	max-width: 15rem;
 }
+.nav {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	height: 1.25rem;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+}
+.nav_icon {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 0.75rem;
+	height: 100%;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	cursor: pointer;
+}
+.nav_txt {
+	height: 100%;
+	padding-right: 0.625rem;
+	padding-left: 0.625rem;
+	-webkit-align-self: stretch;
+	-ms-flex-item-align: stretch;
+	-ms-grid-row-align: stretch;
+	align-self: stretch;
+	-webkit-box-flex: 0;
+	-webkit-flex: 0 0 auto;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	font-size: 1rem;
+	line-height: 1.1875;
+	letter-spacing: -0.01em;
+	cursor: default;
+}
+
 @media (max-width: 1440px) and (min-width: 992px) {
 	.name {
 		font-size: 1.25rem;

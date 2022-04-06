@@ -66,7 +66,7 @@
 	margin-top: auto;
 	background-color: #000;
 	font-size: 1.5rem;
-	line-height: 1.1666666666666667;
+	line-height: 1.166;
 }
 .wrapper {
 	position: relative;
@@ -107,16 +107,22 @@
 	background-color: #fff;
 	color: #000;
 	font-size: 1.375rem;
-	line-height: 1.1818181818181819;
+	line-height: 1.181;
 	text-align: center;
 	letter-spacing: -0.01em;
+	transition: color 0.2s ease, background-color 0.2s ease;
+}
+.bottom_btn:hover {
+	cursor: pointer;
+    color: white;
+    background-color: #00C74F;
 }
 .empty {
 	display: none;
 }
 .empty_txt {
 	font-size: 1.5rem;
-	line-height: 1.3333333333333333;
+	line-height: 1.333;
 }
 
 @media screen and (max-width: 991px) {
@@ -140,7 +146,7 @@
 		padding-top: 0.75rem;
 		padding-bottom: 0.75rem;
 		font-size: 1.125rem;
-		line-height: 1.1666666666666667;
+		line-height: 1.166;
 	}
 	.empty_txt {
 		font-size: 1.125rem;
@@ -153,7 +159,7 @@
 	}
 	.bottom {
 		font-size: 0.875rem;
-		line-height: 1.2142857142857142;
+		line-height: 1.214;
 		letter-spacing: -0.01em;
 	}
 	.wrapper {
