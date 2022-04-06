@@ -1,27 +1,32 @@
 import style from './header.module.css'
-import logo from '../../../public/img/logo.svg'
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
-import { basketView } from '../../store/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { basketView, viewMobileMenu } from '../../store/actions';
 import { HeadLogo } from './headerLogo/headerLogo';
+import { MainState } from '../../store/reducer';
 
 export function HeaderView(){
 
     // redux dispatch init
     const dispatch = useDispatch();
 
+    const viewState = useSelector<MainState, boolean>(state => state.viewMobileMenu);
+
     // basket click
-    let openBasket = () => {
-        // run action
+    const openBasket = () => {
         dispatch(basketView());
     }
 
+    const openMobileMenu = () => {
+        dispatch(viewMobileMenu());
+    }
+
     return(
-        <div className={style.header}>
+        <div className={style.header} data-menu={viewState}>
             <div className={style.wrap}>
                 <Link href="/">
                     <div className={style.logo_wrap}>
-                        <HeadLogo />
+                        <HeadLogo menu={viewState} />
                     </div>
                 </Link>
                 <div className={style.list}>
@@ -33,7 +38,7 @@ export function HeaderView(){
                     </Link>
                 </div>
                 <p className={style.basket} onClick={openBasket}>basket (1)</p>
-                <div className={style.btn}>
+                <div className={style.btn} onClick={openMobileMenu}>
                     <div className={style.line}></div>
                     <div className={style.line}></div>
                 </div>

@@ -196,13 +196,13 @@
 		line-height: 1.1875;
 	}
 	.order {
-		padding: 7rem 0.75rem 1.25rem;
+		padding: 5rem 0.75rem 1.25rem;
 		transform: translateY(7.2rem);
 	}
 	.wrapper {
 		width: 28rem;
 		padding-right: 1rem;
-		padding-bottom: 8rem;
+		padding-bottom: 6rem;
 		padding-left: 1rem;
 	}
 	.footer {

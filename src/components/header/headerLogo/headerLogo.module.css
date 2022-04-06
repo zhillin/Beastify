@@ -7,6 +7,9 @@
 .logo:hover{
 	cursor: pointer;
 }
+.logo[data-menu-white]{
+	display: none;
+}
 
 @media screen and (max-width: 991px) {
 	.logo{
@@ -23,5 +26,11 @@
 @media screen and (max-width: 767px) {
     .logo {
 		width: 7rem;
+	}
+	.logo[data-menu="false"] {
+		display: none;
+	}
+	.logo[data-menu="true"] {
+		display: block;
 	}
 }

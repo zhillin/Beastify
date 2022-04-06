@@ -134,6 +134,28 @@
 		width: 2.25rem;
 		height: 0.125rem;
 		background-color: #000;
+		transition: transform 0.3s ease, background-color 0.3s ease
+	}
+	.header[data-menu="true"]{
+		background-color: #000;
+	}
+	.header[data-menu="true"] .basket{
+		display: none;
+	}
+	.header[data-menu="true"] .wrap{
+		border-bottom-color: #000;
+	}
+	.header[data-menu="true"] .btn{
+		margin-left: auto;
+	}
+	.header[data-menu="true"] .line{
+		background-color: #fff;
+	}
+	.header[data-menu="true"] .line:first-child {
+		transform: translateY(4px) rotate(45deg);
+	}
+	.header[data-menu="true"] .line:last-child {
+		transform: translateY(-4px) rotate(-45deg);
 	}
 }
 

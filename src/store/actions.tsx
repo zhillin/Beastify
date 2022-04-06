@@ -11,7 +11,6 @@ export const basketView: ActionCreator<BasketViewAction> = () => ({
     type: VIEW_BASKET,
 });
 
-
 // action name
 export const DATA_BASKET = 'DATA_BASKET';
 // action type
@@ -25,7 +24,6 @@ export const basketData: ActionCreator<DataBasketAction> = (value) => ({
     value,
 });
 
-
 // action name
 export const VIEW_BASKET_ORDER = 'VIEW_BASKET_ORDER';
 // action type
@@ -36,3 +34,15 @@ type ViewBasketOrderAction = {
 export const basketViewOrder: ActionCreator<ViewBasketOrderAction> = () => ({
     type: VIEW_BASKET_ORDER
 });
+
+// action name
+export const VIEW_MOBILE_MENU = 'VIEW_MOBILE_MENU';
+// action type
+type ViewMobileMenuAction = {
+    type: typeof VIEW_MOBILE_MENU,
+}
+// action creator
+export const viewMobileMenu: ActionCreator<ViewMobileMenuAction> = () => ({
+    type: VIEW_MOBILE_MENU
+});
+

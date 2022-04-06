@@ -6,6 +6,7 @@ import style from "./layout.module.css";
 import { mainReducer } from "../../store/reducer";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
+import { MobileMenuView } from "../mobileMenu/mobileMenuView";
 
 
 type Props = {
@@ -43,6 +44,7 @@ export function Layout({
                     {children}
                 <FooterView footerView={footerView}/>
                 <Basket />
+                <MobileMenuView />
             </div>
         </ Provider>
     )
