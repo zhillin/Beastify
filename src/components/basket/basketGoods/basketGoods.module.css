@@ -1,0 +1,139 @@
+.goods {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	padding-bottom: 2.25rem;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+	border-bottom: 0.0625rem solid #3c3c3c;
+}
+.goods:last-child {
+	border-bottom: none;
+}
+.image {
+	width: 7.75rem;
+	height: 7.75rem;
+	object-fit: cover;
+	margin-right: 1.5rem;
+}
+.box {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+.name {
+	margin-top: 0px;
+	margin-bottom: 0.5rem;
+	color: #fff;
+	font-size: 1.5rem;
+	line-height: 1.1666666666666667;
+	font-weight: 400;
+}
+.txt {
+	margin-bottom: 1.25rem;
+	color: #666;
+	font-size: 0.8125rem;
+	line-height: 1.5384615384615385;
+}
+.price {
+	font-size: 1rem;
+	line-height: 1.1875;
+}
+.icon {
+	width: 1rem;
+	height: 1rem;
+	margin-bottom: auto;
+	margin-left: auto;
+	cursor: pointer;
+	margin-top: 0.25rem;
+}
+.cost {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+.block {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+.info {
+	max-width: 15rem;
+}
+@media (max-width: 1440px) and (min-width: 992px) {
+	.name {
+		font-size: 1.25rem;
+	}
+	.image {
+		width: 6.5rem;
+		height: 6.5rem;
+	}
+	.txt {
+		margin-bottom: 0.5rem;
+	}
+}
+@media (max-width: 1200px) and (min-width: 992px) {
+	.goods {
+		padding-bottom: 1.75rem;
+	}
+	.name {
+		font-size: 1rem;
+	}
+	.icon {
+		margin-top: 0.1rem;
+	}
+}
+@media screen and (max-width: 991px) {
+	.goods {
+		padding-bottom: 1.5rem;
+	}
+	.image {
+		width: 6.5rem;
+		height: 6.5rem;
+	}
+	.name {
+		margin-bottom: 0.25rem;
+		font-size: 1.125rem;
+		line-height: 1.3333333333333333;
+	}
+	.txt {
+		margin-bottom: 0.75rem;
+	}
+}
+@media screen and (max-width: 767px) {
+	.image {
+		margin-right: 1.25rem;
+	}
+	.name {
+		max-width: 15rem;
+	}
+}
+@media screen and (max-width: 479px) {
+	.image {
+		width: 6rem;
+		height: 6rem;
+	}
+	.name {
+		max-width: 10rem;
+		font-size: 1rem;
+	}
+	.txt {
+		margin-bottom: 0.5rem;
+		font-size: 0.75rem;
+		line-height: 1.6666666666666667;
+	}
+	.price {
+		font-size: 0.875rem;
+		line-height: 1.2142857142857142;
+	}
+}

@@ -1,0 +1,232 @@
+.basket {
+	position: fixed;
+	top: 0%;
+	right: 0px;
+	z-index: 2;
+	width: 32rem;
+	height: 100%;
+	padding: 2.25rem 3rem 2.75rem 2rem;
+	background-color: #000;
+	-webkit-transform: translate(100%, 0px);
+	-ms-transform: translate(100%, 0px);
+	transform: translate(100%, 0px);
+	color: #fff;
+}
+.total {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	padding-top: 1.25rem;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	border-top: 0.0625rem solid #3c3c3c;
+}
+.total_txt{
+	font-size: 1.5rem;
+	line-height: 1.1666;
+}
+.empty {
+	display: none;
+}
+.empty_text {
+	font-size: 1.5rem;
+	line-height: 1.333;
+}
+.order {
+	position: fixed;
+	left: auto;
+	top: 0%;
+	right: 0%;
+	bottom: auto;
+	z-index: 2;
+	width: 40%;
+	height: 100%;
+	padding: 9.125rem 3rem 2.75rem 7.25rem;
+	background-color: #000;
+	color: #fff;
+}
+.name {
+	margin-bottom: 5rem;
+	color: #fff;
+	font-size: 4rem;
+	line-height: 1.0625;
+	text-transform: capitalize;
+}
+.list {
+	display: -ms-grid;
+	display: grid;
+	grid-auto-columns: 1fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 2.25rem;
+	-ms-grid-columns: 1fr;
+	grid-template-columns: 1fr;
+	-ms-grid-rows: auto;
+	grid-template-rows: auto;
+}
+.wrapper {
+	position: relative;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	padding-bottom: 8.5625rem;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+.footer {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+	margin-top: auto;
+	background-color: #000;
+}
+.info {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin-bottom: 1rem;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-box-align: start;
+	-webkit-align-items: flex-start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+}
+.info_text{
+	color: #9a9a9a;
+	font-size: 1rem;
+	line-height: 1.1875;
+}
+.full {
+	overflow-y: scroll;
+}
+.full::-webkit-scrollbar {
+	display: none;
+}
+
+@media (max-width: 1600px) and (min-width: 992px) {
+	.order {
+		padding: 9rem 3rem 2.75rem 5rem;
+	}
+}
+
+@media (max-width: 1440px) and (min-width: 992px) {
+	.order {
+		padding-top: 7rem;
+		width: 45%;
+	}
+	.name {
+		font-size: 3rem;
+		margin-bottom: 4.25rem;
+	}
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+	.order {
+		padding: 7rem 3rem 2.75rem 3rem;
+	}
+	.name {
+		margin-bottom: 3.25rem;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.basket {
+		width: 100%;
+		padding-right: 3rem;
+		padding-bottom: 2.5rem;
+		padding-left: 3rem;
+	}
+	.empty_text {
+		font-size: 1.125rem;
+	}
+	.order {
+		left: 0px;
+		top: -100%;
+		z-index: 1;
+		width: 100%;
+		padding-top: 8rem;
+		padding-right: 0rem;
+		padding-left: 0rem;
+		transform: translateY(10rem);
+		transition: transform 0.3s ease;
+	}
+	.order[data-open='enable']{
+		transform: translateY(100%);
+	}
+	.name {
+		display: none;
+		margin-bottom: 2rem;
+		font-size: 2.5rem;
+	}
+	.wrapper {
+		width: 46rem;
+		margin-right: auto;
+		margin-left: auto;
+		padding-right: 2rem;
+		padding-left: 2rem;
+	}
+	.footer {
+		padding-top: 1rem;
+		padding-right: 2rem;
+		padding-left: 2rem;
+	}
+	.total_txt{
+		font-size: 1rem;
+		line-height: 1.1875;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.total {
+		padding-top: 0.6875rem;
+		font-size: 1rem;
+		line-height: 1.1875;
+	}
+	.order {
+		padding: 7rem 0.75rem 1.25rem;
+		transform: translateY(7.2rem);
+	}
+	.wrapper {
+		width: 28rem;
+		padding-right: 1rem;
+		padding-bottom: 8rem;
+		padding-left: 1rem;
+	}
+	.footer {
+		padding-top: 1rem;
+		padding-right: 1rem;
+		padding-left: 1rem;
+	}
+	.info {
+		margin-bottom: 1rem;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	.basket {
+		padding-right: 0.75rem;
+		padding-left: 0.75rem;
+	}
+	.wrapper {
+		width: 100%;
+		padding-right: 0rem;
+		padding-left: 0rem;
+	}
+	.footer {
+		padding-right: 0rem;
+		padding-left: 0rem;
+	}
+}

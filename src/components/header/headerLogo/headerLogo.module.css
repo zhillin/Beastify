@@ -1,0 +1,27 @@
+.logo {
+	width: 9.87rem;
+}
+.logo[data-view="white"] {
+	display: none;
+}
+.logo:hover{
+	cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+	.logo{
+		width: 8rem;
+	}
+    .logo[data-view="black"] {
+		display: none;
+	}
+	.logo[data-view="white"] {
+		display: block;
+	}
+}
+
+@media screen and (max-width: 767px) {
+    .logo {
+		width: 7rem;
+	}
+}
