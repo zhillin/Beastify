@@ -1,4 +1,4 @@
-import style from "./card.module.css";
+import style from "./cardView.module.css";
 import img from '../../../public/img/catalog_img.jpg'
 import arrow from '../../../public/img/arrow_info.svg'
 import { useRouter } from "next/router";

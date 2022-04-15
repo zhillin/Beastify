@@ -43,7 +43,7 @@ export const mainReducer: Reducer<MainState> = (state = initialState, action) =>
         case VIEW_BASKET:
             return {
                 ...state,
-                basketView: !state.basketView
+                basketView: action.value
             }
         case DATA_BASKET:
             return {

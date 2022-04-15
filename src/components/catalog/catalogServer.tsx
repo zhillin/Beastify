@@ -23,7 +23,7 @@ export const catalogServer = async (context: PostCatalogContext) => {
     // const idPage = Number(context.params.id);
     const dataApi = await axios.post(
         `https://beastify.zhilin.one/api/case`,
-        {start: "1", end: "6"}
+        {start: "1", end: "8"}
     );
     // response data props
     return { props: {

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { MainState } from '../../store/reducer';
-import style from './mobileMenu.module.css';
+import style from './mobileMenuView.module.css';
 
 
 export function MobileMenuView(){

@@ -1,6 +1,6 @@
 import CardView from "../../src/components/card/cardView";
 import { Layout } from "../../src/components/layout/layout";
-import style from "../../src/components/card/card.module.css";
+import style from "../../src/components/card/cardView.module.css";
 
 export default function CardPageId(){
     return (

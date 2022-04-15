@@ -8,8 +8,9 @@ type BasketViewAction = {
     type: typeof VIEW_BASKET,
 }
 // action creator
-export const basketView: ActionCreator<BasketViewAction> = () => ({
+export const basketView: ActionCreator<BasketViewAction> = (value) => ({
     type: VIEW_BASKET,
+    value,
 });
 
 

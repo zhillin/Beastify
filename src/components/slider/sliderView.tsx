@@ -1,4 +1,4 @@
-import style from './slide.module.css'
+import style from './slideView.module.css'
 import slide from '../../../public/img/slide_img.jpg'
 
 import { Autoplay } from 'swiper';

@@ -1,4 +1,4 @@
-import style from './header.module.css'
+import style from './headerView.module.css'
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { basketView, viewMobileMenu } from '../../store/actions';
@@ -14,7 +14,7 @@ export function HeaderView(){
 
     // open Basket
     const openBasket = () => {
-        dispatch(basketView());
+        dispatch(basketView(true));
     }
 
     // open mobile menu

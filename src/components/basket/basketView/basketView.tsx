@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { basketView } from "../../../store/actions";
 import Link from "next/link";
 import { BasketGoods } from "../basketGoods/basketGoods";
+import { useEffect } from "react";
 
 const data = [1, 2, 3, 4, 5, 6];
 
@@ -13,8 +14,14 @@ export function BasketView(){
 
     // close basket
     let closeBasket = () => {
-        dispatch(basketView());
+        dispatch(basketView(false));
     }
+
+    useEffect(()=>{
+        return () => {
+            dispatch(basketView(false));
+        };
+    },)
 
     const item = () =>
         data.map( obj => <BasketGoods key={obj} /> );

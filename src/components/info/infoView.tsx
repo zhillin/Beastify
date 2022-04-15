@@ -1,4 +1,4 @@
-import style from './info.module.css';
+import style from './infoView.module.css';
 import arrow from '../../../public/img/arrow_info.svg'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
