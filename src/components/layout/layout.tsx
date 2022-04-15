@@ -3,9 +3,6 @@ import { Basket } from "../basket/basket";
 import { FooterView } from "../footer/footerView";
 import { HeaderView } from "../header/headerView";
 import style from "./layout.module.css";
-import { mainReducer } from "../../store/reducer";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
 import { MobileMenuView } from "../mobileMenu/mobileMenuView";
 
 
@@ -23,11 +20,8 @@ export function Layout({
     headView = true,
 }: Props){
 
-    // create redux store
-    const store = createStore(mainReducer);
-
     return(
-        <Provider store={store}>
+        <>
             <Head>
                 <title>Beastify — {title}</title>
                 <meta content="Hello, this is a test project on react" name="description"></meta>
@@ -46,6 +40,6 @@ export function Layout({
                 <Basket />
                 <MobileMenuView />
             </div>
-        </ Provider>
+        </>
     )
-} 
+}

@@ -1,22 +1,20 @@
-import style from './catalog.module.css'
-import img from '../../../public/img/catalog_img.jpg'
+import style from './catalogView.module.css'
 import Link from 'next/link';
+import { PropsCatalog } from '../catalog';
 
-// data card
-const data = ['one', 'two', 'three', 'fore', 'five', 'six'];
 
-export function CatalogView(){
+export function CatalogView({goods}: PropsCatalog){
 
-    // goods card 
+    // goods card
     const itm = () =>
-        data.map( (obj, index) =>
-            <Link href="/card/ease" key={index}>
+        goods.data.map( obj =>
+            <Link href="/card/ease" key={obj.id}>
                 <div className={style.item}>
-                    <img src={`${img.src}`} className={style.image} />
+                    <img src={`${obj.img[0]}`} className={style.image} />
                     <div className={style.group}>
-                        <p className={style.name}>{obj}</p>
-                        <p className={style.desc}>Color: silver | Size: 480х210х150mm | Polyester resin</p>
-                        <p className={style.cost}>150000 <span data-rub>₽</span></p>
+                        <p className={style.name}>{obj.name}</p>
+                        <p className={style.desc}>{obj.size}</p>
+                        <p className={style.cost}>{obj.price} <span data-rub>₽</span></p>
                         <p className={style.soldout}>SOLD OUT</p>
                     </div>
                 </div>

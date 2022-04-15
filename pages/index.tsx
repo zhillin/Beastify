@@ -1,16 +1,20 @@
-import type { NextPage } from "next";
-import { CatalogView } from "../src/components/catalog/catalogView";
+import { Catalog, PropsCatalog } from "../src/components/catalog/catalog";
+import { PostCatalogContext, catalogServer } from "../src/components/catalog/catalogServer";
 import { Layout } from "../src/components/layout/layout";
 import { SliderView } from "../src/components/slider/sliderView";
 
-
-const Home: NextPage = () => {
+const Home = ({goods}: PropsCatalog) => {
 	return (
 		<Layout title='Home'>
 			<SliderView />
-			<CatalogView />
+			<Catalog goods={goods}/>
 		</ Layout>
 	);
 };
+
+// fetch data from server
+export async function getServerSideProps(context: PostCatalogContext) {
+    return catalogServer(context);
+}
 
 export default Home;

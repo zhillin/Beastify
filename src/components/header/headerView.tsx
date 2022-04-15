@@ -12,11 +12,12 @@ export function HeaderView(){
 
     const viewState = useSelector<MainState, boolean>(state => state.viewMobileMenu);
 
-    // basket click
+    // open Basket
     const openBasket = () => {
         dispatch(basketView());
     }
 
+    // open mobile menu
     const openMobileMenu = () => {
         dispatch(viewMobileMenu());
     }
