@@ -1,7 +1,9 @@
 import { Reducer } from "redux";
+import { GoodsData, GoodsObjectItm } from "../components/catalog/catalogType";
 import { 
     CATALOG_DATA,
     DATA_BASKET,
+    GOODS_DATA,
     VIEW_BASKET,
     VIEW_BASKET_ORDER,
     VIEW_MOBILE_MENU
@@ -13,16 +15,10 @@ export type MainState = {
     basketData: [],
     basketViewOrder: boolean,
     viewMobileMenu: boolean,
-    catalogData: {
-        type: string,
-        data: {
-            id: string,
-            name: string,
-            size: string,
-            price: number,
-            img: string[],
-        }[]
-    },
+    catalogData: GoodsData,
+    goodsData: {
+        [key: string]: GoodsObjectItm
+    }
 }
 
 // state start
@@ -35,6 +31,7 @@ const initialState: MainState = {
         type: '',
         data: [],
     },
+    goodsData: {},
 }
 
 // reducer
@@ -64,6 +61,11 @@ export const mainReducer: Reducer<MainState> = (state = initialState, action) =>
             return {
                 ...state,
                 catalogData: action.value
+            }
+        case GOODS_DATA:
+            return {
+                ...state,
+                goodsData: {...state.goodsData, ...action.value}
             }
         default:
             return state;

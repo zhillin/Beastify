@@ -1,25 +1,29 @@
 import style from "./cardView.module.css";
-import img from '../../../public/img/catalog_img.jpg'
-import arrow from '../../../public/img/arrow_info.svg'
+import img from '../../../../public/img/catalog_img.jpg';
+import arrow from '../../../../public/img/arrow_info.svg';
 import { useRouter } from "next/router";
+import { PropsCardView } from "../cardType";
 
-const number = [1, 2, 3, 4, 5, 6, 7];
+export default function CardView({info,}: PropsCardView){
 
-export default function CardView(){
-
-    const router = useRouter();
+    const
+        router = useRouter(),
+        image = info.img,
+        name = info.name,
+        size = info.size,
+        price = info.price;
 
     // img left block
     const imgLeft = () =>
-        number.map( obj =>
-            <img src={`${img.src}`} data-card={obj} data-sa={obj} state-card="disable" className={style.small_img}  key={obj}/>
+        image.map( (obj, index) =>
+            <img src={`${obj}`} data-card={index} data-sa={index} state-card="disable" className={style.small_img}  key={index}/>
         )
     
     // img container block
     const imgContainer = () =>
-        number.map( obj =>
-            <div data-card={obj} data-sb={obj} className={style.item} key={obj}>
-                <img src={`${img.src}`} className={style.big_img} />
+        image.map( (obj, index) =>
+            <div data-card={index} data-sb={index} className={style.item} key={index}>
+                <img src={`${obj}`} className={style.big_img} />
             </div>
         )
 
@@ -42,15 +46,15 @@ export default function CardView(){
                             <p className={style.link_text}>Back to new arrivals</p>
                     </div>
                     <div className={style.info}>
-                        <h2 className={style.title}>EASE BOOST</h2>
+                        <h2 className={style.title}>{name}</h2>
                         <div className={style.box}>
-                            <p className={style.cost}>150000 <span data-rub>₽</span></p>
-                            <p className={style.track}>SOLD OUT</p>
+                            <p className={style.cost}>{price} <span data-rub>₽</span></p>
+                            {/* <p className={style.track}>SOLD OUT</p> */}
                         </div>
-                        <p className={style.desc}>It turned out to be a modern Soviet hare! The past flowed into the present, something like teleportation. Color: silver | Size: 480х210х150mm | Polyester resin</p>
+                        <p className={style.desc}>size: {size}</p>
                     </div>
                     <div className={style.btn}>
-                        <p className={style.card__btn}>buy for 125000 <span data-rub="">₽</span></p>
+                        <p className={style.card__btn}>buy for {price} <span data-rub="">₽</span></p>
                         <p className={style.anhore}>If you have any questions – message to: info@beastify.shop</p>
                     </div>
                 </div>

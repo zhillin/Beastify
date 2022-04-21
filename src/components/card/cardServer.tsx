@@ -1,23 +1,26 @@
 import axios from "axios";
-import { PostCatalogContext } from "./catalogType";
+import { CardPageContext } from "./cardType";
 
 
-export const catalogServer = async (context: PostCatalogContext) => {
+export const cardServer = async (context: CardPageContext) => {
     // check first load page
     const checkClientSide = context.req.url.startsWith('/_next');
     // return null if the page is not loaded for the first
     if(checkClientSide){
         return { props: {
-            goods: null
+            info: null
         }}
     }
-    // requset data from server 
+    // number page
+    const idPage = context.params.id;
+    // requset data from server
     const dataApi = await axios.post(
         `https://beastify.zhilin.one/api/case`,
-        {start: "1", end: "8"}
+        {start: idPage, end: idPage}
     );
     // response data props
     return { props: {
-        goodsServer: dataApi.data
+        info: dataApi.data,
+        idPage,
     }}
 }

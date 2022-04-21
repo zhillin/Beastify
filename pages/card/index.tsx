@@ -1,11 +1,12 @@
-import { Catalog, PropsCatalog } from "../../src/components/catalog/catalog";
-import { PostCatalogContext, catalogServer } from "../../src/components/catalog/catalogServer";
+import { Catalog } from "../../src/components/catalog/catalog";
+import { catalogServer } from "../../src/components/catalog/catalogServer";
+import { PostCatalogContext, PropsCatalog } from "../../src/components/catalog/catalogType";
 import { Layout } from "../../src/components/layout/layout";
 
-export default function CardPage({goods}: PropsCatalog){
+export default function CardPage({goodsServer}: PropsCatalog){
     return (
 		<Layout title='Card'>
-			<Catalog goods={goods}/>
+			<Catalog goodsServer={goodsServer}/>
 		</ Layout>
 	);
 }

@@ -64,3 +64,14 @@ export const catalogData: ActionCreator<CatalogData> = (value) => ({
     value,
 });
 
+// action name
+export const GOODS_DATA = 'GOODS_DATA';
+// action type
+type GoodsData = {
+    type: typeof GOODS_DATA,
+}
+// action creator
+export const goodsDataAction: ActionCreator<GoodsData> = (value) => ({
+    type: GOODS_DATA,
+    value,
+});
