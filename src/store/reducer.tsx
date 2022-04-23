@@ -1,9 +1,11 @@
 import { Reducer } from "redux";
-import { GoodsData, GoodsObjectItm } from "../components/catalog/catalogType";
+import { catalogItmNum } from "../components/catalog/catalog";
+import { GoodsObjectItm } from "../components/catalog/catalogType";
 import { 
-    CATALOG_DATA,
+    AMOUNT_DATA,
     DATA_BASKET,
     GOODS_DATA,
+    SHOW_CATALOG,
     VIEW_BASKET,
     VIEW_BASKET_ORDER,
     VIEW_MOBILE_MENU
@@ -15,7 +17,8 @@ export type MainState = {
     basketData: [],
     basketViewOrder: boolean,
     viewMobileMenu: boolean,
-    catalogData: GoodsData,
+    amountData: number,
+    catalogShow: number,
     goodsData: {
         [key: string]: GoodsObjectItm
     }
@@ -27,10 +30,8 @@ const initialState: MainState = {
     basketData: [],
     basketViewOrder: false,
     viewMobileMenu: false,
-    catalogData: {
-        type: '',
-        data: [],
-    },
+    amountData: 0,
+    catalogShow: catalogItmNum,
     goodsData: {},
 }
 
@@ -57,15 +58,20 @@ export const mainReducer: Reducer<MainState> = (state = initialState, action) =>
                 ...state,
                 viewMobileMenu: !state.viewMobileMenu
             }
-        case CATALOG_DATA:
+        case AMOUNT_DATA:
             return {
                 ...state,
-                catalogData: action.value
+                amountData: action.value
             }
         case GOODS_DATA:
             return {
                 ...state,
                 goodsData: {...state.goodsData, ...action.value}
+            }
+        case SHOW_CATALOG:
+            return {
+                ...state,
+                catalogShow: action.value
             }
         default:
             return state;

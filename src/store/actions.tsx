@@ -53,16 +53,17 @@ export const viewMobileMenu: ActionCreator<ViewMobileMenuAction> = () => ({
 
 
 // action name
-export const CATALOG_DATA = 'CATALOG_DATA';
+export const AMOUNT_DATA = 'AMOUNT_DATA';
 // action type
-type CatalogData = {
-    type: typeof CATALOG_DATA,
+type AmountData = {
+    type: typeof AMOUNT_DATA,
 }
 // action creator
-export const catalogData: ActionCreator<CatalogData> = (value) => ({
-    type: CATALOG_DATA,
+export const getAmountData: ActionCreator<AmountData> = (value) => ({
+    type: AMOUNT_DATA,
     value,
 });
+
 
 // action name
 export const GOODS_DATA = 'GOODS_DATA';
@@ -73,5 +74,18 @@ type GoodsData = {
 // action creator
 export const goodsDataAction: ActionCreator<GoodsData> = (value) => ({
     type: GOODS_DATA,
+    value,
+});
+
+
+// action name
+export const SHOW_CATALOG = 'SHOW_CATALOG';
+// action type
+type ShowCatalogType = {
+    type: typeof SHOW_CATALOG,
+}
+// action creator
+export const showCatalogAction: ActionCreator<ShowCatalogType> = (value) => ({
+    type: SHOW_CATALOG,
     value,
 });

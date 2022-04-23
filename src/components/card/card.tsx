@@ -39,12 +39,12 @@ export function Card({info, idPage}: PropsCard) {
             // goods id
             const idNumber = [Number(idPage)];
             // add goods in store
-            dispatch(goodsDataAsync(idNumber))
+            dispatch(goodsDataAsync(idNumber));
         }
         // render server
         else{
             // add goods in redux if it is missing
-            dispatch(goodsDataAdd(info.data));
+            dispatch(goodsDataAdd(info));
         }
     });
 

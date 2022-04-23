@@ -6,27 +6,61 @@ import { MainState } from "../../store/reducer";
 import { GoodsObjectItm, PropsCatalog } from "./catalogType";
 import { CatalogView } from "./catalogView/catalogView";
 
+export const catalogItmNum = 8;
+
+export const catalogItmID = () => {
+    // catalog list id
+    const id = [];
+    // create catalog list id
+    for(let i = 1; i <= catalogItmNum; i++){
+        id.push(i);
+    }
+    // 
+    return id;
+};
 
 export function Catalog({goodsServer}: PropsCatalog){
     // dispatch
     const dispatch = useDispatch();
+    // use Selectore object type
+    type selectorType = {[key: string]: GoodsObjectItm};
+    // subscribe use selector
+    const useElem = useSelector<MainState, selectorType>(state => state.goodsData);
+    // amount number
+    const catalogShow = useSelector<MainState, number>(state => state.catalogShow);
     // goods object
-    let goods: {[key: string]: GoodsObjectItm} = {};
-    
+    let goods: selectorType = {};
+    // useElem check
+    let useElemCheck = JSON.stringify(useElem) != '{}';
+
+
+    // select n elements in goods object
+    const goodsShow = (objects: selectorType) => {
+        // object sort
+        let showObject: selectorType = {};
+        // sort goods object
+        for (let i = 1; i <= catalogShow; i++) {
+            // add data in show object
+            if(objects[`${i}`] != undefined){
+                showObject[`${i}`] = objects[`${i}`];
+            }
+        }
+        // change data in goods object 
+        return showObject;
+    }
+
+
+    // 
     const renderLogic = () => {
         // render client
-        if(goodsServer == null) {
-            // use Selectore object type
-            type selectorType = {[key: string]: GoodsObjectItm};
-            // subscribe use selector
-            const useElem = useSelector<MainState, selectorType>(state => state.goodsData);
-            // get goods
-            goods = useElem;            
+        if(useElemCheck) {
+            // 
+            goods = goodsShow(useElem);
         }
         // render server
         else{
             // goods object
-            const goodsParce: {[key: string]: GoodsObjectItm} = {};
+            const goodsParce: selectorType = {};
             // create goods object
             goodsServer.data.map(itm => {
                 goodsParce[itm.id] = itm;
@@ -40,19 +74,26 @@ export function Catalog({goodsServer}: PropsCatalog){
 
     useEffect(() => {
         // render client
-        if(goodsServer == null) {
+        if(useElemCheck) {
             // if it is missing in store
-            dispatch(goodsDataAsync([1, 2, 3, 4, 5, 6, 7, 8]))
+            dispatch(
+                // action get data in server
+                goodsDataAsync(
+                    // catalog id
+                    catalogItmID()
+                )
+            )
         }
         // render server
         else{
-            // add goods in redux if it is missing
-            dispatch(goodsDataAdd(goodsServer.data))
+            dispatch(goodsDataAdd(goodsServer));
         }
     });
 
+    // console.log(goods);
+
     if(JSON.stringify(goods) != '{}'){
-        return <CatalogView goods={goods}/>
+        return <CatalogView goods={goods} catalogShow={catalogShow}/>
     }else{
         return <><br/><br/><br/><br/><p>Загрузка</p></>
     }

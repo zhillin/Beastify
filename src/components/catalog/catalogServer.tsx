@@ -1,4 +1,5 @@
 import axios from "axios";
+import { catalogItmID } from "./catalog";
 import { PostCatalogContext } from "./catalogType";
 
 
@@ -14,7 +15,7 @@ export const catalogServer = async (context: PostCatalogContext) => {
     // requset data from server 
     const dataApi = await axios.post(
         `https://beastify.zhilin.one/api/case`,
-        {start: "1", end: "8"}
+        {id: `${catalogItmID()}`}
     );
     // response data props
     return { props: {

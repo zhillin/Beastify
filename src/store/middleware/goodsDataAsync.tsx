@@ -2,13 +2,14 @@ import axios from "axios";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { GoodsData } from "../../components/catalog/catalogType";
-import { goodsDataAction } from "../actions";
+import { getAmountData, goodsDataAction } from "../actions";
 import { MainState } from "../reducer";
 
 
 // 
 // Get missing objects from the server
 // 
+
 export const goodsDataAsync = (goodsId: number[]): ThunkAction<void, MainState, unknown, Action<string>> => {
     return async (dispatch, getState) => {
         // goods store
@@ -17,15 +18,19 @@ export const goodsDataAsync = (goodsId: number[]): ThunkAction<void, MainState, 
         const stringId = serchElem(goodsId, store);
         // missing items
         if(stringId != ''){
-            console.log('===== ADD STORE CLIENT AXIOS')
+            // console.log('===== ADD STORE CLIENT AXIOS')
             // get goods post query
             const goodsResp = await getServerGoods(stringId);
             // add goods in store
-            dispatch(goodsDataAction(goodsResp));
+            dispatch(goodsDataAction(goodsResp.goods));
+            // // add goods amount
+            if(getState().amountData == 0){
+                dispatch(getAmountData(goodsResp.amount));
+            }
         }
         // all items in storage
         else{
-            console.log('==== ALL ELEMENT IN STORE');
+            // console.log('==== ALL ELEMENT IN STORE');
         }
     }
 }
@@ -62,7 +67,10 @@ const getServerGoods = async (stringId: string) => {
     // create goods object
     result.data.map(itm => {
         goods[itm.id] = itm;
-    })
+    });
     // return goods object
-    return goods;
+    return {
+        goods: goods,
+        amount: result.amount
+    };
 }

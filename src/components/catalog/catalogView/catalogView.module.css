@@ -74,7 +74,6 @@
 .soldout {
 	color: #ff6a00;
 	font-weight: 800;
-	display: none;
 }
 .button {
 	display: -webkit-box;
