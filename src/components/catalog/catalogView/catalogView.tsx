@@ -1,11 +1,8 @@
 import style from './catalogView.module.css'
 import Link from 'next/link';
-import { catalogItmNum } from '../catalog';
 import { PropsCatalogView } from '../catalogType';
 import { useDispatch, useSelector } from 'react-redux';
 import { MainState } from '../../../store/reducer';
-import { goodsDataAsync } from '../../../store/middleware/goodsDataAsync';
-import { showCatalogAction } from '../../../store/actions';
 import { catalogShowMore } from '../../../store/middleware/catalogShowMore';
 
 

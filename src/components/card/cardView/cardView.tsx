@@ -3,8 +3,12 @@ import img from '../../../../public/img/catalog_img.jpg';
 import arrow from '../../../../public/img/arrow_info.svg';
 import { useRouter } from "next/router";
 import { PropsCardView } from "../cardType";
+import { basketMiddleWare } from "../../../store/middleware/basketMiddleWare";
+import { useDispatch } from "react-redux";
 
-export default function CardView({info,}: PropsCardView){
+export default function CardView({info}: PropsCardView){
+
+    const dispatch = useDispatch();
 
     const
         router = useRouter(),
@@ -27,6 +31,27 @@ export default function CardView({info,}: PropsCardView){
             </div>
         )
 
+    // price and button JSX
+    const priceAndBtn = () => {
+        if(info.remainder != 0){
+            return {
+                price: 
+                <p className={style.cost} >{price} <span data-rub>₽</span></p>,
+                btn: 
+                <p className={style.card__btn} onClick={ () => dispatch( basketMiddleWare(info.id, 'add') ) }>
+                    buy for {price} <span data-rub="">₽</span>
+                </p>
+            }
+        }else{
+            return {
+                price: 
+                <p className={style.track}>SOLD OUT</p>,
+                btn: 
+                <p className={style.anhore}>If you have any questions – message to: info@beastify.shop</p>
+            }
+        }
+    }
+
     return (
         <>
             <div className={style.card}>
@@ -48,14 +73,12 @@ export default function CardView({info,}: PropsCardView){
                     <div className={style.info}>
                         <h2 className={style.title}>{name}</h2>
                         <div className={style.box}>
-                            <p className={style.cost}>{price} <span data-rub>₽</span></p>
-                            {/* <p className={style.track}>SOLD OUT</p> */}
+                            { priceAndBtn().price }
                         </div>
                         <p className={style.desc}>size: {size}</p>
                     </div>
                     <div className={style.btn}>
-                        <p className={style.card__btn}>buy for {price} <span data-rub="">₽</span></p>
-                        <p className={style.anhore}>If you have any questions – message to: info@beastify.shop</p>
+                        { priceAndBtn().btn }
                     </div>
                 </div>
             </div>

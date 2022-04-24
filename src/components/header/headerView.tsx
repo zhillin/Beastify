@@ -9,8 +9,10 @@ export function HeaderView(){
 
     // redux dispatch init
     const dispatch = useDispatch();
-
+    // 
     const viewState = useSelector<MainState, boolean>(state => state.viewMobileMenu);
+    // 
+    const basketGoods = useSelector<MainState, {data: {}}>(state => state.basketData);
 
     // open Basket
     const openBasket = () => {
@@ -21,6 +23,11 @@ export function HeaderView(){
     const openMobileMenu = () => {
         dispatch(viewMobileMenu());
     }
+
+    const basketNumber = () =>
+        Object.keys(basketGoods.data).length;
+
+    console.log(basketGoods);
 
     return(
         <div className={style.header} data-menu={viewState}>
@@ -38,7 +45,7 @@ export function HeaderView(){
                         <p className={style.item} >Info</p>
                     </Link>
                 </div>
-                <p className={style.basket} onClick={openBasket}>basket (1)</p>
+                <p className={style.basket} onClick={openBasket}>basket ({basketNumber()})</p>
                 <div className={style.btn} onClick={openMobileMenu}>
                     <div className={style.line}></div>
                     <div className={style.line}></div>

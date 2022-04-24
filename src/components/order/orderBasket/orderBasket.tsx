@@ -2,15 +2,29 @@ import style from './orderBasket.module.css'
 import { BasketGoods } from '../../basket/basketGoods/basketGoods';
 import { useSelector } from 'react-redux';
 import { MainState } from '../../../store/reducer';
+import { basketGoodsObjType } from '../../basket/basketType';
 
-const data = [1, 2, 3, 4, 5];
+export function OrderBasket({dataBasket}: {dataBasket: basketGoodsObjType}){
+    // open basket state
+    const basketOpen = useSelector<MainState, boolean>(state => state.basketViewOrder);
+    // goods in basket
+    const goodsObject = dataBasket.data;
+    // price in basket
+    const subtotal = dataBasket.subtotal;
 
-export function OrderBasket(){
-
-    const basketOpen = useSelector<MainState, boolean>(state => state.basketViewOrder)
-
-    const itemBasket = () =>
-        data.map( obj => <BasketGoods key={obj}/> )
+    // goods item JSX element
+    const item = () => {
+        // jsx array
+        let itmJsx = [];
+        // add JSX goods item in array
+        for(let key in goodsObject){
+            itmJsx.push(
+                <BasketGoods goodsItm={goodsObject[key]} key={key}/>
+            )
+        }
+        // return JSX
+        return itmJsx;
+    }
 
     return(
         <div className={style.order} data-open={basketOpen ? 'enable': 'disable'}>
@@ -18,16 +32,12 @@ export function OrderBasket(){
                 <p className={style.name}>basket</p>
                 <div className={style.full}>
                     <div className={style.list} >
-                        { itemBasket() }
+                        { item() }
                     </div>
                     <div className={style.footer}>
-                        <div className={style.info}>
-                            <p className={style.info_text}>Subtotal</p>
-                            <p className={style.info_text}>125 000 <span data-rub>₽</span></p>
-                        </div>
                         <div className={style.total}>
-                            <p className={style.total_txt}>Total:</p>
-                            <p className={style.total_txt}>125 000 <span data-rub>₽</span></p>
+                            <p className={style.total_txt}>Sum:</p>
+                            <p className={style.total_txt}>{subtotal} <span data-rub>₽</span></p>
                         </div>
                     </div>
                 </div>

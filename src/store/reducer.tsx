@@ -14,7 +14,14 @@ import {
 // state type
 export type MainState = {
     basketView: boolean,
-    basketData: [],
+    basketData: {
+        data: {
+            [key: string]: {
+                amount: number
+            }
+        },
+        subtotal: number,
+    },
     basketViewOrder: boolean,
     viewMobileMenu: boolean,
     amountData: number,
@@ -27,7 +34,10 @@ export type MainState = {
 // state start
 const initialState: MainState = {
     basketView: false,
-    basketData: [],
+    basketData: {
+        data: {},
+        subtotal: 0,
+    },
     basketViewOrder: false,
     viewMobileMenu: false,
     amountData: 0,

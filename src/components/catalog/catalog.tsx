@@ -53,20 +53,22 @@ export function Catalog({goodsServer}: PropsCatalog){
     // 
     const renderLogic = () => {
         // render client
-        if(useElemCheck) {
+        if(useElemCheck || goodsServer == null) {
             // 
             goods = goodsShow(useElem);
         }
         // render server
         else{
-            // goods object
-            const goodsParce: selectorType = {};
-            // create goods object
-            goodsServer.data.map(itm => {
-                goodsParce[itm.id] = itm;
-            })
-            // get goods
-            goods = goodsParce;
+            if(goodsServer != null){
+                // goods object
+                const goodsParce: selectorType = {};
+                // create goods object
+                goodsServer.data.map(itm => {
+                    goodsParce[itm.id] = itm;
+                })
+                // get goods
+                goods = goodsParce;
+            }
         }
     }
 
@@ -74,7 +76,7 @@ export function Catalog({goodsServer}: PropsCatalog){
 
     useEffect(() => {
         // render client
-        if(useElemCheck) {
+        if(useElemCheck || goodsServer == null) {
             // if it is missing in store
             dispatch(
                 // action get data in server
@@ -86,7 +88,9 @@ export function Catalog({goodsServer}: PropsCatalog){
         }
         // render server
         else{
-            dispatch(goodsDataAdd(goodsServer));
+            if(goodsServer != null){
+                dispatch(goodsDataAdd(goodsServer));
+            }
         }
     });
 
