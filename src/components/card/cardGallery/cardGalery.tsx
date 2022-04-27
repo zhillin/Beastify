@@ -46,12 +46,12 @@ export function CardGalery({image}: {image: string[]}){
     }
 
     useEffect(() => {
-        console.log('=== MOUNT GALERY')
+        // console.log('=== MOUNT GALERY')
         // add event scroll
         eventGalleryAdd();
         // remove event scroll
         return () => {
-            console.log('=== UNMOUNT GALERY')
+            // console.log('=== UNMOUNT GALERY')
             eventGalleryRemove();
         }
     },[])

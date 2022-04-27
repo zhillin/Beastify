@@ -1,8 +1,10 @@
 import { Reducer } from "redux";
 import { catalogItmNum } from "../components/catalog/catalog";
 import { GoodsObjectItm } from "../components/catalog/catalogType";
+import { FormaValueType } from "../components/order/orderType";
 import { 
     AMOUNT_DATA,
+    CHANGE_FORM,
     DATA_BASKET,
     GOODS_DATA,
     SHOW_CATALOG,
@@ -28,7 +30,8 @@ export type MainState = {
     catalogShow: number,
     goodsData: {
         [key: string]: GoodsObjectItm
-    }
+    },
+    formValue: FormaValueType
 }
 
 // state start
@@ -43,6 +46,16 @@ const initialState: MainState = {
     amountData: 0,
     catalogShow: catalogItmNum,
     goodsData: {},
+    formValue: {
+        name: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        country: '',
+        city: '',
+        address: '',
+        index: '',
+    }
 }
 
 // reducer
@@ -82,6 +95,11 @@ export const mainReducer: Reducer<MainState> = (state = initialState, action) =>
             return {
                 ...state,
                 catalogShow: action.value
+            }
+        case CHANGE_FORM:
+            return {
+                ...state,
+                formValue: action.value
             }
         default:
             return state;

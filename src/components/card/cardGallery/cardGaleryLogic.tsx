@@ -45,10 +45,14 @@ export const scrollCord = (bigImgRef: BigImgRefType, smallImgRef: SmallImgRefTyp
         elem.sort(function(a, b){
             return a.cord-b.cord;
         });
-        // select id element
-        let id: number = Number( elem[0].obj.getAttribute('data-card') );
-        // state element navigation
-        stateEl(id, smallImgRef);
+        // check undefined element
+        if(elem[0] != undefined){
+            // select id element
+            let id: number = Number( elem[0].obj.getAttribute('data-card') );
+            // state element navigation
+            stateEl(id, smallImgRef);
+        }
+        
 }
 
 export const jumpTo = (event: MouseEvent, bigImgRef: BigImgRefType) => {

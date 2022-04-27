@@ -7,6 +7,7 @@ import { MobileMenuView } from "../mobileMenu/mobileMenuView";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { basketMiddleWare } from "../../store/middleware/basketMiddleWare";
+import { formMiddleWare } from "../../store/middleware/formMiddleWare";
 
 
 type Props = {
@@ -31,7 +32,19 @@ export function Layout({
         // first run   
         if(numRender == 0){
             // check local storage and add goods in basket
-            dispatch(basketMiddleWare('0', 'localStorage'))
+            dispatch(
+                basketMiddleWare(
+                    '0', 
+                    'localStorage'
+                )
+            )
+            dispatch(
+                formMiddleWare(
+                    '', 
+                    '', 
+                    'localStorage'
+                )
+            );
         }
         // number render
         numRender++;

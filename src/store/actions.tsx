@@ -89,3 +89,16 @@ export const showCatalogAction: ActionCreator<ShowCatalogType> = (value) => ({
     type: SHOW_CATALOG,
     value,
 });
+
+
+// action name
+export const CHANGE_FORM = 'CHANGE_FORM';
+// action type
+type ChangeFormType = {
+    type: typeof CHANGE_FORM,
+}
+// action creator
+export const changeFormAction: ActionCreator<ChangeFormType> = (value) => ({
+    type: CHANGE_FORM,
+    value,
+});

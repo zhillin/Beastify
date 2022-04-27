@@ -135,26 +135,29 @@ export const basketMiddleWare = (
 
         // get data in local storage
         const getDataInLocalStorage = () => {
-            // local storage goods to basket
-            const getLocalStore = JSON.parse(localStorage.basket);
-            // array in id goods
-            let localArray = [];
-            // id goods in array
-            for(let key in getLocalStore){
-                localArray.push(Number(key));
-            }
-            // dispatch state in reducer
-            if(options != 'responseServer'){
-                // check goods in storage
-                dispatch(goodsDataAsync(localArray, 'basket'));   
-            }else{
-                // add goods in basket when data received from the server
-                dispatch(basketData(
-                    {
-                        data: getLocalStore,
-                        subtotal: sumAndLocalStorage(getLocalStore, goodsData),
-                    }
-                ));
+            // localstorage check
+            if(localStorage.basket != undefined){
+                // local storage goods to basket
+                const getLocalStore = JSON.parse(localStorage.basket);
+                // array in id goods
+                let localArray = [];
+                // id goods in array
+                for(let key in getLocalStore){
+                    localArray.push(Number(key));
+                }
+                // dispatch state in reducer
+                if(options != 'responseServer'){
+                    // check goods in storage
+                    dispatch(goodsDataAsync(localArray, 'basket'));   
+                }else{
+                    // add goods in basket when data received from the server
+                    dispatch(basketData(
+                        {
+                            data: getLocalStore,
+                            subtotal: sumAndLocalStorage(getLocalStore, goodsData),
+                        }
+                    ));
+                }
             }
         }
 
