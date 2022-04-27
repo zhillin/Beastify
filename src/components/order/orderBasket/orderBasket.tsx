@@ -26,24 +26,41 @@ export function OrderBasket({dataBasket}: {dataBasket: basketGoodsObjType}){
         return itmJsx;
     }
 
+    // number goods in basket 
+    const basketNumber = () => Object.keys(goodsObject).length;
+
+    const basketCheckEmpty = () => {
+        // not empty JSX
+        const notEmptyJsx =
+            <div className={style.full}>
+                <div className={style.list} >
+                    { item() }
+                </div>
+                <div className={style.footer}>
+                    <div className={style.total}>
+                        <p className={style.total_txt}>Sum:</p>
+                        <p className={style.total_txt}>{subtotal} <span data-rub>₽</span></p>
+                    </div>
+                </div>
+            </div>
+        // empty JSX
+        const emptyJsx =
+            <div className={style.empty}>
+                <p className={style.empty_text}>You basket is empty</p>
+            </div>
+        // return
+        if(basketNumber() != 0){
+            return(notEmptyJsx)
+        }else{
+            return emptyJsx;
+        }
+    }
+
     return(
         <div className={style.order} data-open={basketOpen ? 'enable': 'disable'}>
             <div className={style.wrapper}>
                 <p className={style.name}>basket</p>
-                <div className={style.full}>
-                    <div className={style.list} >
-                        { item() }
-                    </div>
-                    <div className={style.footer}>
-                        <div className={style.total}>
-                            <p className={style.total_txt}>Sum:</p>
-                            <p className={style.total_txt}>{subtotal} <span data-rub>₽</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div className={style.empty}>
-                    <p className={style.empty_text}>You basket is empty</p>
-                </div>
+                { basketCheckEmpty() }
             </div>
         </div>
     )

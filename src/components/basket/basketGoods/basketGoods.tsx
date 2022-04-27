@@ -6,6 +6,7 @@ import minus from '../../../../public/img/minus_icon.svg'
 import { useDispatch } from "react-redux"
 import { basketMiddleWare } from "../../../store/middleware/basketMiddleWare"
 import { basketGoodsItmType } from "../basketType"
+import Link from "next/link"
 
 
 export function BasketGoods({goodsItm}: {goodsItm: basketGoodsItmType}){
@@ -18,7 +19,13 @@ export function BasketGoods({goodsItm}: {goodsItm: basketGoodsItmType}){
         name = goodsItm.name,
         size = goodsItm.size,
         price = goodsItm.price,
-        amount = goodsItm.amount;
+        amount = goodsItm.amount,
+        remainder = goodsItm.remainder;
+
+    // check amount plus btn
+    const plusBtnDeactive = amount == remainder ? 'disable' : 'enable';
+    // check amount minus btn
+    const minusBtnDeactive = amount == 1 ? 'disable' : 'enable';
 
     // remove goods in basket 
     const closeBtnClick = () => {
@@ -35,7 +42,9 @@ export function BasketGoods({goodsItm}: {goodsItm: basketGoodsItmType}){
 
     return(
         <div className={style.goods}>
-            <img src={img} className={style.image} />
+            {/* <Link href={`/card/${id}`}> */}
+                <img src={img} className={style.image} />
+            {/* </Link> */}
             {/* <Image src={img} width={1031} height={773} className={style.image}/> */}
             <div className={style.box}>
                 <div className={style.block}>
@@ -48,11 +57,11 @@ export function BasketGoods({goodsItm}: {goodsItm: basketGoodsItmType}){
                 <div className={style.cost}>
                     <p className={style.price}>{price} <span data-rub>₽</span></p>
                     <div className={style.nav}>
-                        <div className={style.nav_icon} onClick={minusBtnClick}>
+                        <div className={style.nav_icon} onClick={minusBtnClick} data-active={minusBtnDeactive}>
                             <img src={minus.src} alt="" />
                         </div>
                         <p className={style.nav_txt}>{amount}</p>
-                        <div className={style.nav_icon} onClick={plusBtnClick}>
+                        <div className={style.nav_icon} onClick={plusBtnClick} data-active={plusBtnDeactive}>
                             <img src={plus.src} alt=""/>
                         </div>
                     </div>

@@ -13,7 +13,8 @@ export type basketGoodsItmType = {
     name: string,
     size: string,
     price: number,
-    amount: number
+    amount: number,
+    remainder: number,
 }
 
 export type basketGoodsObjType = {

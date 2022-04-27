@@ -27,8 +27,6 @@ export function HeaderView(){
     const basketNumber = () =>
         Object.keys(basketGoods.data).length;
 
-    console.log(basketGoods);
-
     return(
         <div className={style.header} data-menu={viewState}>
             <div className={style.wrap}>

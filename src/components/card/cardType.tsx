@@ -7,7 +7,7 @@ export type CardPageContext = {
     params:{
         id: string
     },
-}
+};
 
 export type PropsCard = {
     info: GoodsData,
@@ -16,4 +16,16 @@ export type PropsCard = {
 
 export type PropsCardView = {
     info: GoodsObjectItm
-}
+};
+
+export type RefDivType =
+    HTMLDivElement[] | null[];
+
+export type RefImgType =
+    HTMLImageElement[] | null[];
+
+export type BigImgRefType = 
+    {current: RefDivType};
+
+export type SmallImgRefType = 
+    {current: RefImgType};

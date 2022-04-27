@@ -19,6 +19,9 @@
 	object-fit: cover;
 	margin-right: 1.5rem;
 }
+/* .image:hover{
+	cursor: pointer;
+} */
 .box {
 	-webkit-box-flex: 1;
 	-webkit-flex: 1;
@@ -50,6 +53,12 @@
 	margin-left: auto;
 	cursor: pointer;
 	margin-top: 0.25rem;
+	opacity: 0.7;
+	transition: opacity 0.2s ease;
+}
+.icon:hover{
+	opacity: 1;
+	cursor: pointer;
 }
 .cost {
 	display: -webkit-box;
@@ -88,6 +97,7 @@
 	display: flex;
 	width: 0.75rem;
 	height: 100%;
+	opacity: 0.8;
 	-webkit-box-pack: center;
 	-webkit-justify-content: center;
 	-ms-flex-pack: center;
@@ -100,6 +110,14 @@
 	-webkit-flex: 0 0 auto;
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
+	cursor: pointer;
+	transition: opacity 0.2s ease;
+}
+.nav_icon[data-active='disable'] {
+	opacity: 0.3;
+}
+.nav_icon:not([data-active='disable']):hover{
+	opacity: 1;
 	cursor: pointer;
 }
 .nav_txt {
@@ -158,6 +176,12 @@
 	}
 	.txt {
 		margin-bottom: 0.75rem;
+	}
+	.nav_icon{
+		opacity: 1;
+	}
+	.icon{
+		opacity: 1;
 	}
 }
 @media screen and (max-width: 767px) {

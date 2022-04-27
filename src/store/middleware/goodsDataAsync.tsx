@@ -4,13 +4,17 @@ import { ThunkAction } from "redux-thunk";
 import { GoodsData } from "../../components/catalog/catalogType";
 import { getAmountData, goodsDataAction } from "../actions";
 import { MainState } from "../reducer";
+import { basketMiddleWare } from "./basketMiddleWare";
 
 
 // 
 // Get missing objects from the server
 // 
 
-export const goodsDataAsync = (goodsId: number[]): ThunkAction<void, MainState, unknown, Action<string>> => {
+export const goodsDataAsync = (
+    goodsId: number[],
+    type?: string,
+): ThunkAction<void, MainState, unknown, Action<string>> => {
     return async (dispatch, getState) => {
         // goods store
         const store = getState().goodsData;
@@ -23,7 +27,7 @@ export const goodsDataAsync = (goodsId: number[]): ThunkAction<void, MainState, 
             const goodsResp = await getServerGoods(stringId);
             // add goods in store
             dispatch(goodsDataAction(goodsResp.goods));
-            // // add goods amount
+            // add goods amount
             if(getState().amountData == 0){
                 dispatch(getAmountData(goodsResp.amount));
             }
@@ -31,6 +35,17 @@ export const goodsDataAsync = (goodsId: number[]): ThunkAction<void, MainState, 
         // all items in storage
         else{
             // console.log('==== ALL ELEMENT IN STORE');
+        }
+        // basket middle ware
+        // in time start page
+        if(type == 'basket'){
+            dispatch(
+                basketMiddleWare(
+                    '0', 
+                    'localStorage', 
+                    'responseServer'
+                )
+            )
         }
     }
 }

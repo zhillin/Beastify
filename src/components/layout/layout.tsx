@@ -4,6 +4,9 @@ import { FooterView } from "../footer/footerView";
 import { HeaderView } from "../header/headerView";
 import style from "./layout.module.css";
 import { MobileMenuView } from "../mobileMenu/mobileMenuView";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { basketMiddleWare } from "../../store/middleware/basketMiddleWare";
 
 
 type Props = {
@@ -13,13 +16,27 @@ type Props = {
     headView?: boolean,
 }
 
+let numRender = 0;
+
 export function Layout({
     children, 
     title='Page', 
     footerView,
     headView = true,
 }: Props){
-
+    // redux dispatch init
+    const dispatch = useDispatch();
+    // life cycle
+    useEffect(() => {  
+        // first run   
+        if(numRender == 0){
+            // check local storage and add goods in basket
+            dispatch(basketMiddleWare('0', 'localStorage'))
+        }
+        // number render
+        numRender++;
+    },[])
+    // render
     return(
         <>
             <Head>

@@ -1,53 +1,71 @@
 import style from "./cardView.module.css";
-import img from '../../../../public/img/catalog_img.jpg';
 import arrow from '../../../../public/img/arrow_info.svg';
 import { useRouter } from "next/router";
 import { PropsCardView } from "../cardType";
 import { basketMiddleWare } from "../../../store/middleware/basketMiddleWare";
 import { useDispatch } from "react-redux";
+import { CardGalery } from "../cardGallery/cardGalery";
+import { useEffect, useState } from "react";
+import { CardSlider } from "../cardSlider/cardSlider";
+
 
 export default function CardView({info}: PropsCardView){
 
+    // state screen
+    const [screen, setScreen] = useState('');
+    // dispatch redux
     const dispatch = useDispatch();
-
+    // data
     const
         router = useRouter(),
         image = info.img,
         name = info.name,
         size = info.size,
-        price = info.price;
+        price = info.price,
+        brand = info.brand;
 
-    // img left block
-    const imgLeft = () =>
-        image.map( (obj, index) =>
-            <img src={`${obj}`} data-card={index} data-sa={index} state-card="disable" className={style.small_img}  key={index}/>
-        )
-    
-    // img container block
-    const imgContainer = () =>
-        image.map( (obj, index) =>
-            <div data-card={index} data-sb={index} className={style.item} key={index}>
-                <img src={`${obj}`} className={style.big_img} />
-            </div>
-        )
+    // change state type screen
+    const sizeWindow = () => {
+        // width screen page
+        const width = innerWidth;
+        // desktop state
+        if(width > 990 && screen != 'desktop'){
+            setScreen('desktop');
+        }
+        // mobile state
+        if(width <= 990 && screen != 'mobile'){
+            setScreen('mobile');
+        }
+    }
+
+    useEffect(()=>{
+        // start state
+        sizeWindow();
+        // mount component
+        window.addEventListener('resize', sizeWindow)
+        // unmount component
+        return () => {
+            window.removeEventListener('resize', sizeWindow)
+        }
+    },[screen])
 
     // price and button JSX
     const priceAndBtn = () => {
         if(info.remainder != 0){
             return {
                 price: 
-                <p className={style.cost} >{price} <span data-rub>₽</span></p>,
+                    <p className={style.cost} >{price} <span data-rub>₽</span></p>,
                 btn: 
-                <p className={style.card__btn} onClick={ () => dispatch( basketMiddleWare(info.id, 'add') ) }>
-                    buy for {price} <span data-rub="">₽</span>
-                </p>
+                    <p className={style.card__btn} onClick={ () => dispatch( basketMiddleWare(info.id, 'add') ) }>
+                        buy for {price} <span data-rub="">₽</span>
+                    </p>
             }
         }else{
             return {
                 price: 
-                <p className={style.track}>SOLD OUT</p>,
+                    <p className={style.track}>SOLD OUT</p>,
                 btn: 
-                <p className={style.anhore}>If you have any questions – message to: info@beastify.shop</p>
+                    <p className={style.anhore}>If you have any questions – message to: info@beastify.shop</p>
             }
         }
     }
@@ -55,14 +73,11 @@ export default function CardView({info}: PropsCardView){
     return (
         <>
             <div className={style.card}>
-                <div className={style.left}>
-                    { imgLeft() }
-                </div>
-                <div className={style.container}>
-                    <div data-card="view" className={style.wrapper}>
-                        { imgContainer() }
-                    </div>
-                </div>
+                {
+                    screen == 'desktop' ? 
+                    <CardGalery image={image}/> : 
+                    <CardSlider image={image} />
+                }
                 <div className={style.right}>
                     <div className={style.link} onClick={() => router.back()}>
                         <div className={style.link_emb}>
@@ -71,7 +86,8 @@ export default function CardView({info}: PropsCardView){
                             <p className={style.link_text}>Back to new arrivals</p>
                     </div>
                     <div className={style.info}>
-                        <h2 className={style.title}>{name}</h2>
+                        <h2 className={style.title}>{brand}</h2>
+                        <p className={style.name} >{name}</p>
                         <div className={style.box}>
                             { priceAndBtn().price }
                         </div>

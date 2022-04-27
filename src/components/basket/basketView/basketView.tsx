@@ -41,13 +41,10 @@ export function BasketView({dataBasket}: {dataBasket: basketGoodsObjType}){
     // number goods in basket 
     const basketNumber = () => Object.keys(goodsObject).length;
 
-    return (
-        <div className={style.basket}>
-            <div className={style.wrapper}>
-                <div className={style.top}>
-                    <div className={style.top_txt}>basket ({basketNumber()})</div>
-                    <a className={style.top_icon} onClick={closeBasket}>Close</a>
-                </div>
+    const basketCheckEmpty = () => {
+        // not empty JSX
+        const notEmptyJsx =
+            <>
                 <div className={style.roll}>
                     <div className={style.list}>
                         { [...item()] }
@@ -62,9 +59,28 @@ export function BasketView({dataBasket}: {dataBasket: basketGoodsObjType}){
                         <p className={style.bottom_btn}>Checkout</p>
                     </Link>
                 </div>
-                <div className={style.empty}>
-                    <div className={style.empty_txt}>Basket is empty</div>
+            </>;
+        // empty JSX
+        const emptyJSX =
+            <div className={style.empty}>
+                <div className={style.empty_txt}>Basket is empty</div>
+            </div>
+        // return
+        if(basketNumber() != 0){
+            return(notEmptyJsx)
+        }else{
+            return emptyJSX;
+        }
+    }
+
+    return (
+        <div className={style.basket}>
+            <div className={style.wrapper}>
+                <div className={style.top}>
+                    <div className={style.top_txt}>basket ({basketNumber()})</div>
+                    <a className={style.top_icon} onClick={closeBasket}>Close</a>
                 </div>
+                { basketCheckEmpty() }
             </div>
         </div>
     )

@@ -120,8 +120,16 @@
 	margin-top: 0px;
 	margin-bottom: 2rem;
 	font-size: 3rem;
-	line-height: 1.0625;
+	line-height: 1;
 	font-weight: 400;
+}
+.name {
+	max-width: 45rem;
+	margin-top: 0px;
+	margin-bottom: 2rem;
+	font-size: 1.8rem;
+	line-height: 1;
+	font-weight: 600;
 }
 .desc {
 	max-width: 23.0625rem;
@@ -161,6 +169,19 @@
 	cursor: pointer;
     background-color: black;
 	color: white;
+}
+
+.wrapper .swiper{
+	overflow: visible;
+}
+
+.wrapper .swiperSlide{
+	width: 100%;
+}
+
+.wrapper .swiperBullet{
+	background-color: #000;
+	opacity: 1;
 }
 
 @media (max-width: 1440px) and (min-width: 992px){
@@ -203,7 +224,7 @@
 		width: 100%;
 	}
 	.item {
-		width: 92%;
+		width: 100%;
 		margin-right: 1rem;
 		margin-bottom: 0rem;
 		-webkit-box-flex: 0;

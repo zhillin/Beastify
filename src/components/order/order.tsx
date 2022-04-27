@@ -23,12 +23,13 @@ export function Order(){
             amount: basketGoods.data[itm].amount
         };
     }
-    // render
+    
     return(
         <>
             <OrderHead />
-            <OrderView />
+            <OrderView price={basketGoodsObj.subtotal}/>
             <OrderBasket dataBasket={basketGoodsObj}/>
         </>
     )
+    
 }

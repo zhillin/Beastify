@@ -3,20 +3,34 @@ import { ThunkAction } from "redux-thunk";
 import { GoodsObjectItm } from "../../components/catalog/catalogType";
 import { basketData, basketView } from "../actions";
 import { MainState } from "../reducer";
+import { goodsDataAsync } from "./goodsDataAsync";
 
 
 type ObjectBasketType = {[key: string]: {amount: number}}
 
-// Sum calculate
-const sum = (basket: ObjectBasketType, goods: {[key: string]: GoodsObjectItm}) => {
+// sumAndLocalStorage calculate
+const sumAndLocalStorage = (basket: ObjectBasketType, goods: {[key: string]: GoodsObjectItm}) => {
+
+    // conver json in string
+    const basketObjectJson = JSON.stringify(basket);
+    // add in localstorage
+    localStorage.setItem("basket", basketObjectJson);
+    // localstorage key 
+    let localStoreKey = 'success';
+
     // price var 
     let price = 0;
     // calculate total
     for(let key in basket){
-        price += basket[key].amount * goods[key].price;
+        if(goods[key] != undefined){
+            price += basket[key].amount * goods[key].price;
+        }else{
+            localStoreKey = 'error'
+        }
     }
+
     // return price
-    return price;
+    return localStoreKey == 'success' ? price : 0;
 }
 
 
@@ -28,7 +42,9 @@ export const basketMiddleWare = (
     // id goods
     idGoods: string, 
     // type operation
-    type: 'add' | 'remove' | 'plus' | 'minus'
+    type: 'add' | 'remove' | 'plus' | 'minus' | 'localStorage',
+    // options additional param
+    options?: string,
     // =======
 ): ThunkAction<void, MainState, unknown, Action<string>> => {
     // =======
@@ -54,7 +70,7 @@ export const basketMiddleWare = (
                 dispatch(basketData(
                     {
                         data: addObj,
-                        subtotal: sum(addObj, goodsData),
+                        subtotal: sumAndLocalStorage(addObj, goodsData),
                     }
                 ));
             }
@@ -74,7 +90,7 @@ export const basketMiddleWare = (
             dispatch(basketData(
                 {
                     data: removeObj,
-                    subtotal: sum(removeObj, goodsData),
+                    subtotal: sumAndLocalStorage(removeObj, goodsData),
                 }
             ));
         }
@@ -93,7 +109,7 @@ export const basketMiddleWare = (
             dispatch(basketData(
                 {
                     data: plusObj,
-                    subtotal: sum(plusObj, goodsData),
+                    subtotal: sumAndLocalStorage(plusObj, goodsData),
                 }
             ));
         }
@@ -112,9 +128,34 @@ export const basketMiddleWare = (
             dispatch(basketData(
                 {
                     data: minusObj,
-                    subtotal: sum(minusObj, goodsData),
+                    subtotal: sumAndLocalStorage(minusObj, goodsData),
                 }
             ));
+        }
+
+        // get data in local storage
+        const getDataInLocalStorage = () => {
+            // local storage goods to basket
+            const getLocalStore = JSON.parse(localStorage.basket);
+            // array in id goods
+            let localArray = [];
+            // id goods in array
+            for(let key in getLocalStore){
+                localArray.push(Number(key));
+            }
+            // dispatch state in reducer
+            if(options != 'responseServer'){
+                // check goods in storage
+                dispatch(goodsDataAsync(localArray, 'basket'));   
+            }else{
+                // add goods in basket when data received from the server
+                dispatch(basketData(
+                    {
+                        data: getLocalStore,
+                        subtotal: sumAndLocalStorage(getLocalStore, goodsData),
+                    }
+                ));
+            }
         }
 
         // add goods in basket
@@ -131,7 +172,11 @@ export const basketMiddleWare = (
         }
         // minus goods in basket
         if(type == 'minus'){
-            minusOperation()
+            minusOperation();
+        }
+        // get data in local storage
+        if(type == 'localStorage'){
+            getDataInLocalStorage();
         }
     }
 }
