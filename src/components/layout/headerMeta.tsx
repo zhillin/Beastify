@@ -12,6 +12,13 @@ export function HeaderMeta({title}: {title: string}){
             <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5"></link>
             <meta name="msapplication-TileColor" content="#ffffff"></meta>
             <meta name="theme-color" content="#ffffff"></meta>
+
+            <meta property="og:url" content="Beastify shop" />
+            <meta property="og:title" content="Beastify shop" />
+            <meta property="og:description" content="Only the best" />
+            <meta property="og:image" content="https://beastify.zhilin.one/img/bcard.jpg" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:image" content="https://beastify.zhilin.one/img/bcard.jpg"/>
         </Head>
     )
 }
