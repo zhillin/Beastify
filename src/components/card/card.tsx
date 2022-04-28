@@ -17,14 +17,16 @@ export function Card({info, idPage}: PropsCard) {
     // goods object
     let goods: GoodsObjectItm | null = null;
     // amount
-    let amount: number | string = useSelector<MainState, number | string>(state => state.amountData)
-    
+    let amount: number | string = useSelector<MainState, number | string>(state => state.amountData);
+    // subscribe use selector
+    const useElem = useSelector<MainState, selectorType>(state => state.goodsData);
+    // useElem check
+    let useElemCheck = JSON.stringify(useElem) != '{}';
+
     // logica render component
     const renderLogic = () => {
         // render client
-        if(info == null) {
-            // subscribe use selector
-            const useElem = useSelector<MainState, selectorType>(state => state.goodsData);
+        if(useElemCheck || info == null) {
             // get goods
             goods = useElem[idPage];
         }
@@ -50,7 +52,7 @@ export function Card({info, idPage}: PropsCard) {
 
     useEffect(() => {
         // render client
-        if(info == null) {
+        if(useElemCheck || info == null) {
             // goods id
             const idNumber = [Number(idPage)];
             // add goods in store
