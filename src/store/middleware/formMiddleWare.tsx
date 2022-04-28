@@ -14,18 +14,21 @@ export const formMiddleWare = (
     // type input
     type: string,
     // type operation
-    options: 'add' | 'localStorage',
+    options: 'input' | 'localStorage' | 'check' | 'validate',
     // =======
 ): ThunkAction<void, MainState, unknown, Action<string>> => {
     // =======
     return async (dispatch, getState) => {
 
+        // form object from srore
+        const formObj: { input: {[key: string]: string}, validate: { state: boolean, message: string, }, check: boolean} = getState().formValue;
+        // total price in basket
+        const basketPrice = getState().basketData.subtotal;
+
         // add value in store
         const addOptions = () => {
-            // form object from srore
-            const formObj = getState().formValue;
             // value object
-            let valueObj: {[key: string]: string} = {...formObj};
+            let valueObj: {[key: string]: string} = {...formObj.input};
 
             // check value phone input
             if(type == 'phone'){
@@ -38,11 +41,10 @@ export const formMiddleWare = (
             }else
             // check value string input
             if(type == 'name' || type == 'lastName' || type == 'country' || type == 'city'){
-                console.log(value);
                 // regular
                 const checkString = /^\p{L}{1,200}$/u.test(value);
                 // check value
-                if(checkString){
+                if(checkString || value == ''){
                     valueObj[type] = value;
                 }
             }else{
@@ -51,7 +53,7 @@ export const formMiddleWare = (
             // save json in lcoalstorage
             localStorage.setItem('form', JSON.stringify(valueObj))
             // update object value in store
-            dispatch(changeFormAction(valueObj))
+            dispatch(changeFormAction({...formObj, input: valueObj}))
         }
 
         // get value in localstorage
@@ -61,17 +63,67 @@ export const formMiddleWare = (
                 // localstorage
                 const localObj = JSON.parse(localStorage.form);
                 // update object value in store
-                dispatch(changeFormAction(localObj));
+                dispatch(changeFormAction({...formObj, input: localObj}));
             }            
         }
 
+        // check change enable or disable
+        const checkOptions = () => {
+            dispatch(changeFormAction({...formObj, check: !formObj.check}))
+        }
+
+        // validate form
+        const validateOptions = () => {
+            console.log(basketPrice);
+            // check key input
+            let formKey = true;
+            // check empty data in input 
+            for(let key in formObj.input){
+                if(formObj.input[key] == ''){
+                    formKey = false;
+                }
+            }
+            // basket is empty
+            if(basketPrice == 0 ){
+                dispatch(changeFormAction(
+                    {...formObj, validate: {state: false, message: 'fill the basket'}}
+                ));
+            }else 
+            // empty data in input 
+            if(!formKey){
+                dispatch(changeFormAction(
+                    {...formObj, validate: {state: false, message: 'fill in all fields in the form'}}
+                ));
+            }else 
+            // no consent to data processing
+            if(!formObj.check){
+                dispatch(changeFormAction(
+                    {...formObj, validate: {state: false, message: 'no consent to data processing'}}
+                ));
+            }
+            // success
+            else{
+                dispatch(changeFormAction(
+                    {...formObj, validate: {state: true, message: 'pay'}}
+                ));
+            }
+        }
+
         // add value in store
-        if(options == 'add'){
+        if(options == 'input'){
             addOptions();
         }
         // get value in localstorage
         if(options == 'localStorage'){
             localStorageOptions();
+        }
+        // check change enable or disable
+        if(options == 'check'){
+            checkOptions();
+        }
+        // validate form
+        if(options == 'validate'){
+            validateOptions();
         }
     }
 }

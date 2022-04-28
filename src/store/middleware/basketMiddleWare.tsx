@@ -42,7 +42,7 @@ export const basketMiddleWare = (
     // id goods
     idGoods: string, 
     // type operation
-    type: 'add' | 'remove' | 'plus' | 'minus' | 'localStorage',
+    type: 'add' | 'remove' | 'plus' | 'minus' | 'localStorage' | 'clear',
     // options additional param
     options?: string,
     // =======
@@ -161,6 +161,19 @@ export const basketMiddleWare = (
             }
         }
 
+        // clear basket
+        const clearOperation = () => {
+            // localstorage clear
+            localStorage.removeItem("basket");
+            // state clear
+            dispatch(basketData(
+                {
+                    data: {},
+                    subtotal: 0,
+                }
+            ));
+        }
+
         // add goods in basket
         if(type == 'add'){
             addOperation();
@@ -180,6 +193,10 @@ export const basketMiddleWare = (
         // get data in local storage
         if(type == 'localStorage'){
             getDataInLocalStorage();
+        }
+        // 
+        if(type == 'clear'){
+            clearOperation();
         }
     }
 }

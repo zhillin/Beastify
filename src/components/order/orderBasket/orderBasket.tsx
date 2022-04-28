@@ -39,7 +39,7 @@ export function OrderBasket({dataBasket}: {dataBasket: basketGoodsObjType}){
                 <div className={style.footer}>
                     <div className={style.total}>
                         <p className={style.total_txt}>Sum:</p>
-                        <p className={style.total_txt}>{subtotal} <span data-rub>₽</span></p>
+                        <p className={style.total_txt}>{subtotal.toLocaleString('ru')} <span data-rub>₽</span></p>
                     </div>
                 </div>
             </div>

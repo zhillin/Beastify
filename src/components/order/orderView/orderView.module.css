@@ -135,6 +135,14 @@
 	text-decoration: none;
 	text-transform: lowercase;
 	cursor: default;
+	transition: background-color 0.2s ease;
+}
+.btn[data-success=enable] {
+	background-color: #00C74F;
+}
+.btn[data-success=enable]:hover{
+	cursor: pointer;
+	background-color: #23b14a;
 }
 .info {
 	display: -webkit-box;

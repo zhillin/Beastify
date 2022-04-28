@@ -53,7 +53,7 @@ export function BasketView({dataBasket}: {dataBasket: basketGoodsObjType}){
                 <div className={style.bottom}>
                     <div className={style.bottom_box}>
                         <div className={style.bottom_txt}>Sum:</div>
-                        <p className={style.bottom_price}>{subtotal} <span data-rub>₽</span></p>
+                        <p className={style.bottom_price}>{subtotal.toLocaleString('ru')} <span data-rub>₽</span></p>
                     </div>
                     <Link href="/order">
                         <p className={style.bottom_btn}>Checkout</p>

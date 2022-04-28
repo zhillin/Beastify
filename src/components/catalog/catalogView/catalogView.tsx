@@ -22,7 +22,7 @@ export function CatalogView({goods, catalogShow}: PropsCatalogView){
             // price JSX element
             let price = () => {
                 if(goods[prop].remainder != 0){
-                    return <p className={style.cost}>{goods[prop].price} <span data-rub>₽</span></p>;
+                    return <p className={style.cost}>{goods[prop].price.toLocaleString('ru')} <span data-rub>₽</span></p>;
                 }else{
                     return <p className={style.soldout}>SOLD OUT</p>;
                 }

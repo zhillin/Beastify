@@ -54,10 +54,10 @@ export default function CardView({info}: PropsCardView){
         if(info.remainder != 0){
             return {
                 price: 
-                    <p className={style.cost} >{price} <span data-rub>₽</span></p>,
+                    <p className={style.cost} >{price.toLocaleString('ru')} <span data-rub>₽</span></p>,
                 btn: 
                     <p className={style.card__btn} onClick={ () => dispatch( basketMiddleWare(info.id, 'add') ) }>
-                        buy for {price} <span data-rub="">₽</span>
+                        buy for {price.toLocaleString('ru')} <span data-rub="">₽</span>
                     </p>
             }
         }else{

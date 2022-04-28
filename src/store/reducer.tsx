@@ -31,7 +31,14 @@ export type MainState = {
     goodsData: {
         [key: string]: GoodsObjectItm
     },
-    formValue: FormaValueType
+    formValue: {
+        input: FormaValueType,
+        validate: {
+            state: boolean,
+            message: string,
+        }
+        check: boolean,
+    }
 }
 
 // state start
@@ -47,14 +54,21 @@ const initialState: MainState = {
     catalogShow: catalogItmNum,
     goodsData: {},
     formValue: {
-        name: '',
-        lastName: '',
-        phone: '',
-        email: '',
-        country: '',
-        city: '',
-        address: '',
-        index: '',
+        input: {
+            name: '',
+            lastName: '',
+            phone: '',
+            email: '',
+            country: '',
+            city: '',
+            address: '',
+            index: '',
+        },
+        validate: {
+            state: false,
+            message: '',
+        },
+        check: true,
     }
 }
 

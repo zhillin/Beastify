@@ -55,7 +55,7 @@ export function BasketGoods({goodsItm}: {goodsItm: basketGoodsItmType}){
                     <img src={close.src} className={style.icon} onClick={closeBtnClick}/>
                 </div>
                 <div className={style.cost}>
-                    <p className={style.price}>{price} <span data-rub>₽</span></p>
+                    <p className={style.price}>{price.toLocaleString('ru')} <span data-rub>₽</span></p>
                     <div className={style.nav}>
                         <div className={style.nav_icon} onClick={minusBtnClick} data-active={minusBtnDeactive}>
                             <img src={minus.src} alt="" />
