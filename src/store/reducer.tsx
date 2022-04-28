@@ -26,7 +26,7 @@ export type MainState = {
     },
     basketViewOrder: boolean,
     viewMobileMenu: boolean,
-    amountData: number,
+    amountData: number | string,
     catalogShow: number,
     goodsData: {
         [key: string]: GoodsObjectItm

@@ -55,7 +55,7 @@ export function OrderView({price}: {price: number}){
     // button txt
     const btnElem = () => {
         if(formValidate.state){
-            return <p className={style.btn_text} >{formValidate.message} = {price.toLocaleString('ru')} <span data-rub="">₽</span></p>
+            return <p className={style.btn_text} >{formValidate.message} — {price.toLocaleString('ru')} <span data-rub="">₽</span></p>
         }else{
             return <p className={style.btn_text}>{formValidate.message}</p>
         }

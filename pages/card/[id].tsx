@@ -11,7 +11,7 @@ export default function CardPageId({info, idPage}: PropsCard){
     // component
     return (
         <div className={style.card_container}>
-            <Layout title='Info' footerView='desk'>
+            <Layout title='Card' footerView='desk'>
                 <Card info={info} idPage={`${idPageRout}`}/>
             </ Layout >
         </div>

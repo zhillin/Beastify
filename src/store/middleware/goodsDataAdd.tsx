@@ -9,7 +9,7 @@ import { MainState } from "../reducer";
 // 
 
 type goodsDataAddType = {
-    data: {id: string}[], 
+    data: {id: string}[],
     amount: number,
 }
 

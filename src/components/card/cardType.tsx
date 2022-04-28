@@ -18,6 +18,10 @@ export type PropsCardView = {
     info: GoodsObjectItm
 };
 
+// use Selectore object type
+export type selectorType = 
+    {[key: string]: GoodsObjectItm};
+
 export type RefDivType =
     HTMLDivElement[] | null[];
 

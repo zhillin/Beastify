@@ -1,7 +1,5 @@
-import { useSelector } from 'react-redux';
 import logo from '../../../../public/img/logo.svg'
 import logoWhite from '../../../../public/img/logo_white.svg'
-import { MainState } from '../../../store/reducer';
 import style from './headerLogo.module.css';
 
 type Props = {
