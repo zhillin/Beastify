@@ -4,17 +4,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { basketViewOrder } from '../../../store/actions';
 import { HeadLogo } from '../../header/headerLogo/headerLogo';
 import { MainState } from '../../../store/reducer';
+import { useEffect } from 'react';
 
 export function OrderHead(){
 
     const dispatch = useDispatch();
     const basketOpen = useSelector<MainState, boolean>(state => state.basketViewOrder)
 
+    const buttonText = basketOpen ? 'Close basket' : 'View basket';
+
+    // change state mobile basket
     const basketHandler = () => {
-        dispatch(basketViewOrder());
+        dispatch(basketViewOrder(!basketOpen));
     }
 
-    const buttonText = basketOpen ? 'Close basket' : 'View basket';
+    // close mobile basket
+    useEffect(() => {
+     return () => {
+        dispatch(basketViewOrder(false))
+     }   
+    },[])
 
     return(
         <div className={style.header}>

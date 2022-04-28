@@ -10,6 +10,8 @@ export function CardGalery({image}: {image: string[]}){
     const bigImgRef: BigImgRefType = useRef([]);
     // small img navigation ref
     const smallImgRef: SmallImgRefType = useRef([]);
+    // interval labale
+    let interval: ReturnType<typeof setInterval>;
     
     // active element
     const galleryScroll = () => {
@@ -23,6 +25,10 @@ export function CardGalery({image}: {image: string[]}){
 
     // add event listener in component
     const eventGalleryAdd = () => {
+        // add interval
+        interval = setInterval(() =>{
+            galleryScroll();
+        },300);
         // add event scroll
         window.addEventListener('scroll', galleryScroll);
         // add event click
@@ -35,6 +41,8 @@ export function CardGalery({image}: {image: string[]}){
 
     // remove event listener in component
     const eventGalleryRemove = () => {
+        // 
+        clearInterval(interval);
         // remove scroll
         window.removeEventListener('scroll', galleryScroll);
         // remove click

@@ -11,7 +11,7 @@ export function CatalogView({goods, catalogShow}: PropsCatalogView){
     // dispatch
     const dispatch = useDispatch();
     // amount number
-    const amountNumber = useSelector<MainState, number>(state => state.amountData);
+    const amountNumber = useSelector<MainState, number | string>(state => state.amountData);
 
     // item JSX element
     const itm = () => {

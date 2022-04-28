@@ -35,8 +35,9 @@ type ViewBasketOrderAction = {
     type: typeof VIEW_BASKET_ORDER,
 }
 // action creator
-export const basketViewOrder: ActionCreator<ViewBasketOrderAction> = () => ({
-    type: VIEW_BASKET_ORDER
+export const basketViewOrder: ActionCreator<ViewBasketOrderAction> = (value) => ({
+    type: VIEW_BASKET_ORDER,
+    value,
 });
 
 
@@ -47,8 +48,9 @@ type ViewMobileMenuAction = {
     type: typeof VIEW_MOBILE_MENU,
 }
 // action creator
-export const viewMobileMenu: ActionCreator<ViewMobileMenuAction> = () => ({
-    type: VIEW_MOBILE_MENU
+export const viewMobileMenu: ActionCreator<ViewMobileMenuAction> = (value) => ({
+    type: VIEW_MOBILE_MENU,
+    value,
 });
 
 

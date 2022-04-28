@@ -88,12 +88,12 @@ export const mainReducer: Reducer<MainState> = (state = initialState, action) =>
         case VIEW_BASKET_ORDER:
             return {
                 ...state,
-                basketViewOrder: !state.basketViewOrder
+                basketViewOrder: action.value
             }
         case VIEW_MOBILE_MENU:
             return {
                 ...state,
-                viewMobileMenu: !state.viewMobileMenu
+                viewMobileMenu: action.value
             }
         case AMOUNT_DATA:
             return {

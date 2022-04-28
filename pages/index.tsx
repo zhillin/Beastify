@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Catalog } from "../src/components/catalog/catalog";
 import { catalogServer } from "../src/components/catalog/catalogServer";
 import { PostCatalogContext, PropsCatalog } from "../src/components/catalog/catalogType";

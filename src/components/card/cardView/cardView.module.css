@@ -165,6 +165,7 @@
     letter-spacing: -0.01em;
 	transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
+
 .card__btn:hover {
 	cursor: pointer;
     background-color: black;
@@ -307,6 +308,9 @@
 	}
 	.info {
 		padding-top: 2rem;
+	}
+	.name{
+		font-size: 1.5rem;
 	}
 }
 

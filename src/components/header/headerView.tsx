@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { basketView, viewMobileMenu } from '../../store/actions';
 import { HeadLogo } from './headerLogo/headerLogo';
 import { MainState } from '../../store/reducer';
+import { useRouter } from 'next/router';
 
 export function HeaderView(){
 
+    // router
+    const router = useRouter();
     // redux dispatch init
     const dispatch = useDispatch();
     // 
@@ -21,20 +24,23 @@ export function HeaderView(){
 
     // open mobile menu
     const openMobileMenu = () => {
-        dispatch(viewMobileMenu());
+        dispatch(viewMobileMenu(!viewState));
     }
 
     const basketNumber = () =>
         Object.keys(basketGoods.data).length;
 
+    const logoCLick = () => {
+        dispatch(viewMobileMenu(false))
+        router.push('/');
+    }
+
     return(
         <div className={style.header} data-menu={viewState}>
             <div className={style.wrap}>
-                <Link href="/">
-                    <div className={style.logo_wrap}>
-                        <HeadLogo menu={viewState} />
-                    </div>
-                </Link>
+                <div className={style.logo_wrap} onClick={logoCLick}>
+                    <HeadLogo menu={viewState} />
+                </div>
                 <div className={style.list}>
                     <Link href="/">
                         <p className={style.item} >Main</p>
